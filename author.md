@@ -5,6 +5,7 @@ Preencha os dados abaixo para identificar a autoria do trabalho.
 - Aluno: João Guilherme Lopes Alves da Costa (joguicosta@hotmail.com)
 - Aluno: João Pedro Fonseca Dantas (joaopedrofdantas@tutanota.com)
 - Turma: DIM0119 - ESTRUTURA DE DADOS BÁSICAS I - T01 (2021.1)
+- Professor: Selan Rodrigues dos Santos
 
 # Indique quais métodos das classes abaixo foram implementados
 
