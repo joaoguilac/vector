@@ -40,7 +40,7 @@ We have in this project two batches of tests: 24 unit tests for the `sc::list` c
 
 If you wish to compile this project without the cmake, create the `build` folder manually (`mkdir build`), then try to run the command below:
 
-```
+```bash
 g++ -Wall -std=c++11 -I source/include -I source/tests/tm source/tests/main.cpp source/tests/tm/test_manager.cpp -o build/all_tests
 ```
 
@@ -48,18 +48,21 @@ g++ -Wall -std=c++11 -I source/include -I source/tests/tm source/tests/main.cpp 
 
 From the project's root folder, run as usual (assuming `$` is the terminal prompt):
 
-```
-$ ./build/tests/all_tests (with cmake)
-$ ./build/all_tests (without cmake)
+```bash
+$ ./build/tests/all_tests #with cmake
+$ ./build/all_tests #without cmake
 ```
 
 # Driver
 
 To run the driver you should run the command below:
 
-```
-$ g++ -Wall -std=c++11 source/src/driver_vector.cpp -o build/driver (compiling)
-$ ./build/driver (running)
+```bash
+# Compiling
+$ g++ -Wall -std=c++11 source/src/driver_vector.cpp -o build/driver
+
+# Running
+$ ./build/driver
 ```
 
 --------
