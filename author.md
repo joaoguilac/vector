@@ -2,8 +2,8 @@
 
 Preencha os dados abaixo para identificar a autoria do trabalho.
 
-- Aluno: João Guilherme Lopes Alves da Costa (joguicosta@hotmail.com)
-- Aluno: João Pedro Fonseca Dantas (joaopedrofdantas@tutanota.com)
+- Aluno: João Guilherme Lopes Alves da Costa (joguicosta@hotmail.com) <a href="https://github.com/joaoguilac">@joaoguilac</a>
+- Aluno: João Pedro Fonseca Dantas (joaopedrofdantas@tutanota.com) <a href="https://github.com/jopefd">@jopefd</a>
 - Turma: DIM0119 - ESTRUTURA DE DADOS BÁSICAS I - T01 (2021.1)
 - Professor: Selan Rodrigues dos Santos
 
