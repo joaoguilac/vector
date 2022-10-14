@@ -11,7 +11,6 @@
 #include <limits>       // std::numeric_limits<T>
 #include <cstddef>      // std::size_t
 #include <sstream>      // std::ostringstream
-#include <cstring>      // std::memcpy
 
 /// Sequence container namespace.
 namespace sc {
@@ -153,9 +152,9 @@ namespace sc {
                 m_capacity = sz;
                 m_end = sz;
                 m_storage = new T[m_capacity];
-                for (size_type i{0}; i < sz; i++) {
-                    *(m_storage+i) = *(first+i);
-                }
+
+                // Copy all elements from the range to the vector.
+                std::copy(first, last, this->begin());
             }
 
             //* (4) Copy constructor. Construct the vector from another vector by copying the elements.
@@ -281,7 +280,7 @@ namespace sc {
                 if (cap_ > m_capacity) {
                     // Realloc the storage.
                     T *newVec{new T[cap_]};
-                    memcpy(newVec, m_storage, m_end * sizeof(size_type));
+                    std:copy(this->begin(), this->end(), newVec);
                     // Update storage attributes.
                     delete[] m_storage;
                     m_storage = newVec;
@@ -294,7 +293,7 @@ namespace sc {
             {
                 if (m_end < m_capacity) {
                     T *newVec{new T[m_end]};
-                    memcpy(newVec, m_storage, m_end * sizeof(size_type));
+                    std:copy(this->begin(), this->end(), newVec);
                     // Update storage.
                     delete[] m_storage;
                     m_storage = newVec;
@@ -313,12 +312,10 @@ namespace sc {
                     m_storage = newVec;
                     m_capacity = count_;
                 }
-                // Set elements into the vector.
-                for (size_t i{0}; i < count_; i++) {
-                    m_storage[i] = value_;
-                }
                 // Update size.
                 m_end = count_;
+                // Set elements into the vector.
+                std::fill(this->begin(), this->end(), value_);
             }
 
             //* Replaces the content of the vector with copy of the initializer list.
@@ -350,9 +347,7 @@ namespace sc {
                     m_capacity = sz;
                 }
                 // Copy all elements from the range into the vector storage area.
-                for (size_type i{0}; i < sz; i++) {
-                    *m_storage+i = *first+i;
-                }
+                std::copy(first, last, m_storage);
                 // Update size.
                 m_end = sz;
             }
