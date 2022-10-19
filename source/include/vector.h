@@ -277,7 +277,7 @@ namespace sc {
 
                 auto old_element = old_m_end - 1;
                 auto new_element = m_end - 1;
-                while (old_element != position - 1) {
+                while (old_element >= position) {
                     m_storage[new_element] = m_storage[old_element];
                     if (old_element != 0) {
                         new_element--;
@@ -307,7 +307,7 @@ namespace sc {
 
                 auto old_element = old_m_end - 1;
                 auto new_element = m_end - 1;
-                while (old_element != position - 1) {
+                while (old_element >= position) {
                     m_storage[new_element] = m_storage[old_element];
                     if (old_element != 0) {
                         new_element--;
@@ -337,7 +337,7 @@ namespace sc {
 
                 auto old_element = old_m_end - 1;
                 auto new_element = m_end - 1;
-                while (old_element != position - 1) {
+                while (old_element >= position) {
                     m_storage[new_element] = m_storage[old_element];
                     if (old_element != 0) {
                         new_element--;
@@ -360,7 +360,7 @@ namespace sc {
             iterator insert( const_iterator pos_ , InputItr first_, InputItr last_ ) {
                 auto size_range = last_ - first_;
                 auto position = pos_ - begin();
-                 if (capacity() + size_range > m_capacity) {
+                if (capacity() + size_range > m_capacity) {
                     size_type new_capacity{m_capacity + size_range};
                     new_capacity *= 2;
                     reserve(new_capacity);
@@ -370,7 +370,7 @@ namespace sc {
 
                 auto old_element = old_m_end - 1;
                 auto new_element = m_end - 1;
-                while (old_element != position - 1) {
+                while (old_element >= position) {
                     m_storage[new_element] = m_storage[old_element];
                     if (old_element != 0) {
                         new_element--;
@@ -392,7 +392,7 @@ namespace sc {
             iterator insert( iterator pos_, const std::initializer_list< value_type >& ilist_ ) {
                 auto size_list = ilist_.size();
                 auto position = pos_ - begin();
-                 if (capacity() + size_list > m_capacity) {
+                if (capacity() + size_list > m_capacity) {
                     size_type new_capacity{m_capacity + size_list};
                     new_capacity *= 2;
                     reserve(new_capacity);
@@ -402,7 +402,7 @@ namespace sc {
 
                 auto old_element = old_m_end - 1;
                 auto new_element = m_end - 1;
-                while (old_element != position - 1) {
+                while (old_element >= position) {
                     m_storage[new_element] = m_storage[old_element];
                     if (old_element != 0) {
                         new_element--;
@@ -425,7 +425,7 @@ namespace sc {
             iterator insert( const_iterator pos_, const std::initializer_list< value_type >& ilist_ ) {
                 auto size_list = ilist_.size();
                 auto position = pos_ - begin();
-                 if (capacity() + size_list > m_capacity) {
+                if (capacity() + size_list > m_capacity) {
                     size_type new_capacity{m_capacity + size_list};
                     new_capacity *= 2;
                     reserve(new_capacity);
@@ -435,7 +435,7 @@ namespace sc {
 
                 auto old_element = old_m_end - 1;
                 auto new_element = m_end - 1;
-                while (old_element != position - 1) {
+                while (old_element >= position) {
                     m_storage[new_element] = m_storage[old_element];
                     if (old_element != 0) {
                         new_element--;
