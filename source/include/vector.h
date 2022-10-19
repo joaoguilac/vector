@@ -263,16 +263,197 @@ namespace sc {
                 m_end--;
             }
 
-            iterator insert( iterator pos_ , const_reference value_ );
-            iterator insert( const_iterator pos_ , const_reference value_ );
+            iterator insert( iterator pos_ , const_reference value_ ) {
+                auto position = pos_ - begin();
+                // Verify if has space for a new element.
+                if (full())  {
+                    size_type new_capacity{m_capacity};
+                    if (m_capacity == 0) new_capacity++;
+                    else new_capacity *= 2;
+                    reserve(new_capacity);
+                }
+                auto old_m_end = m_end;
+                m_end++;
+
+                auto old_element = old_m_end - 1;
+                auto new_element = m_end - 1;
+                while (old_element != position - 1) {
+                    m_storage[new_element] = m_storage[old_element];
+                    if (old_element != 0) {
+                        new_element--;
+                        old_element--;
+                    }
+                    else {
+                        break;
+                    }
+                }
+
+                m_storage[position] = value_;
+                
+                return iterator(this->begin() + position);
+            }
+
+            iterator insert( const_iterator pos_ , const_reference value_ ) {
+                auto position = pos_ - begin();
+                // Verify if has space for a new element.
+                if (full())  {
+                    size_type new_capacity{m_capacity};
+                    if (m_capacity == 0) new_capacity++;
+                    else new_capacity *= 2;
+                    reserve(new_capacity);
+                }
+                auto old_m_end = m_end;
+                m_end++;
+
+                auto old_element = old_m_end - 1;
+                auto new_element = m_end - 1;
+                while (old_element != position - 1) {
+                    m_storage[new_element] = m_storage[old_element];
+                    if (old_element != 0) {
+                        new_element--;
+                        old_element--;
+                    }
+                    else {
+                        break;
+                    }
+                }
+
+                m_storage[position] = value_;
+                
+                return iterator(this->begin() + position);
+            }
 
             template <typename InputItr>
-            iterator insert( iterator pos_ , InputItr first_, InputItr last_ );
-            template <typename InputItr>
-            iterator insert( const_iterator pos_ , InputItr first_, InputItr last_ );
+            iterator insert( iterator pos_ , InputItr first_, InputItr last_ ) {
+                auto size_range = last_ - first_;
+                auto position = pos_ - begin();
+                if (capacity() + size_range > m_capacity) {
+                    size_type new_capacity{m_capacity + size_range};
+                    new_capacity *= 2;
+                    reserve(new_capacity);
+                }
+                auto old_m_end = m_end;
+                m_end += size_range;
 
-            iterator insert( iterator pos_, const std::initializer_list< value_type >& ilist_ );
-            iterator insert( const_iterator pos_, const std::initializer_list< value_type >& ilist_ );
+                auto old_element = old_m_end - 1;
+                auto new_element = m_end - 1;
+                while (old_element != position - 1) {
+                    m_storage[new_element] = m_storage[old_element];
+                    if (old_element != 0) {
+                        new_element--;
+                        old_element--;
+                    }
+                    else {
+                        break;
+                    }
+                }
+
+                for (auto i{position}; i < (position + size_range); i++) {
+                    m_storage[i] = *first_;
+                    first_++;
+                }
+                
+                return iterator(this->begin() + position);
+            }
+
+            template <typename InputItr>
+            iterator insert( const_iterator pos_ , InputItr first_, InputItr last_ ) {
+                auto size_range = last_ - first_;
+                auto position = pos_ - begin();
+                 if (capacity() + size_range > m_capacity) {
+                    size_type new_capacity{m_capacity + size_range};
+                    new_capacity *= 2;
+                    reserve(new_capacity);
+                }
+                auto old_m_end = m_end;
+                m_end += size_range;
+
+                auto old_element = old_m_end - 1;
+                auto new_element = m_end - 1;
+                while (old_element != position - 1) {
+                    m_storage[new_element] = m_storage[old_element];
+                    if (old_element != 0) {
+                        new_element--;
+                        old_element--;
+                    }
+                    else {
+                        break;
+                    }
+                }
+
+                for (auto i{position}; i < (position + size_range); i++) {
+                    m_storage[i] = *first_;
+                    first_++;
+                }
+                
+                return iterator(this->begin() + position);
+            }
+
+            iterator insert( iterator pos_, const std::initializer_list< value_type >& ilist_ ) {
+                auto size_list = ilist_.size();
+                auto position = pos_ - begin();
+                 if (capacity() + size_list > m_capacity) {
+                    size_type new_capacity{m_capacity + size_list};
+                    new_capacity *= 2;
+                    reserve(new_capacity);
+                }
+                auto old_m_end = m_end;
+                m_end += size_list;
+
+                auto old_element = old_m_end - 1;
+                auto new_element = m_end - 1;
+                while (old_element != position - 1) {
+                    m_storage[new_element] = m_storage[old_element];
+                    if (old_element != 0) {
+                        new_element--;
+                        old_element--;
+                    }
+                    else {
+                        break;
+                    }
+                }
+
+                auto list_element = ilist_.begin();
+                for (auto i{position}; i < (position + size_list); i++) {
+                    m_storage[i] = *list_element;
+                    list_element++;
+                }
+                
+                return iterator(this->begin() + position);
+            }
+
+            iterator insert( const_iterator pos_, const std::initializer_list< value_type >& ilist_ ) {
+                auto size_list = ilist_.size();
+                auto position = pos_ - begin();
+                 if (capacity() + size_list > m_capacity) {
+                    size_type new_capacity{m_capacity + size_list};
+                    new_capacity *= 2;
+                    reserve(new_capacity);
+                }
+                auto old_m_end = m_end;
+                m_end += size_list;
+
+                auto old_element = old_m_end - 1;
+                auto new_element = m_end - 1;
+                while (old_element != position - 1) {
+                    m_storage[new_element] = m_storage[old_element];
+                    if (old_element != 0) {
+                        new_element--;
+                        old_element--;
+                    }
+                    else {
+                        break;
+                    }
+                }
+
+                auto list_element = ilist_.begin();
+                for (auto i{position}; i < (position + size_list); i++) {
+                    m_storage[i] = *list_element;
+                    list_element++;
+                }
+                
+                return iterator(this->begin() + position);
+            }
 
             //* The storage will have a capacity equal to cap_ if cap_ > m_capacity.
             void reserve(size_type cap_)
